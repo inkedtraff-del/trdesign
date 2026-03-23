@@ -529,46 +529,75 @@ body {
     transform: scale(1.1); 
 }
 
-/* Мобильный адаптив */
+/* ФИНАЛЬНЫЙ МОБИЛЬНЫЙ АДАПТИВ (Логотип оторван наверх, контент по центру) */
 @media(max-width: 768px) {
-    .editorial-split-vertical { gap: 1.5rem; }
-    .btn-boxed { width: 100%; max-width: 300px; font-size: 1.1rem; padding: 0.8rem 1.5rem; }
-    .block-desc { text-align: center; line-height: 1.4; margin-bottom: 1rem; }
-    
-    /* 1. Прячем базовое меню на главной странице, чтобы не мешало */
+    /* Прячем меню на главной */
     .luxury-nav { display: none; }
     
-    /* НО оставляем меню на подстраницах (цепляемся за наличие фона) */
+    /* Оставляем навигацию (стрелку) только на подстраницах */
     nav[style*="background"] { 
         display: flex !important; 
         padding: 1rem 5% !important; 
     }
     nav[style*="background"] .nav-links {
-        display: flex;
         width: 100%;
-        justify-content: space-between; 
-        align-items: center;
-    }
-    nav[style*="background"] .nav-links a {
-        margin-left: 0;
-        font-size: 0.75rem; 
+        justify-content: flex-start; 
     }
 
-    /* 2. Логотип жестко наверх, контент расталкиваем по краям */
+    /* Главный экран - блок контента центрируется по высоте */
     .hero-editorial {
-        padding: 2rem 5% 3rem 5%; 
-        justify-content: space-between; /* Отправляет логотип наверх, кнопки вниз */
+        min-height: 100vh;
+        padding: 2rem 5%; 
+        justify-content: center; 
+        position: relative;
+    }
+
+    /* ЛОГОТИП УЛЕТАЕТ В САМЫЙ ВЕРХ И НЕ ЗАВИСИТ ОТ ЦЕНТРАЛЬНОГО КОНТЕНТА */
+    .hero-top-brand { 
+        position: absolute;
+        top: 2.5rem; /* Отступ от самого верха экрана */
+        left: 50%;
+        transform: translateX(-50%); /* Выравниваем ровно по центру */
+        width: 100%;
+        margin: 0; 
+        z-index: 10;
     }
     
-    .hero-top-brand { margin-top: 0; } 
-    
     .brand-logo { 
-        max-width: 150px; /* Сделал еще чуть аккуратнее */
-        margin-bottom: 0.5rem;
+        max-width: 140px; 
+        margin: 0 auto 0.5rem auto;
+    }
+
+    /* Заголовок и кнопки собираются плотно друг к другу в центре */
+    .hero-content { 
+        gap: 2.5rem; 
+        margin-top: 4rem; /* На мелких экранах, чтобы не налезло на логотип */
     }
 
     .title-serif {
-        font-size: clamp(2.5rem, 8vw, 3.5rem); 
-        margin-bottom: 2rem;
+        font-size: clamp(2.2rem, 8vw, 3rem); 
+        margin-bottom: 0; 
+    }
+
+    .editorial-split-vertical { gap: 2rem; }
+
+    .split-block { gap: 0.5rem; }
+
+    .block-title {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    .block-desc { 
+        text-align: center; 
+        line-height: 1.3; 
+        margin-bottom: 0.5rem; 
+    }
+
+    .btn-boxed { 
+        width: 100%; 
+        max-width: 280px; 
+        font-size: 1.1rem; 
+        padding: 0.8rem 1rem; 
     }
 }
