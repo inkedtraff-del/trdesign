@@ -96,7 +96,7 @@ body {
 
 /* Главный экран */
 .hero-editorial {
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -123,13 +123,11 @@ body {
 /* Стили для нового изображения-логотипа */
 .brand-logo {
     display: block;
-    margin: 0 auto; /* Центрировать внутри родителя */
-    max-width: 250px; /* Установите желаемый максимальный размер логотипа */
-    height: auto; /* Сохранять пропорции */
-    margin-bottom: 1rem; /* Добавить отступ снизу */
+    margin: 0 auto;
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 1rem;
 }
-
-/* Удалили стили для текстового логотипа .brand-name */
 
 .brand-subtitle {
     font-family: var(--font-serif);
@@ -412,5 +410,132 @@ body {
     .btn-boxed { width: 100%; max-width: 300px; }
     .block-desc { text-align: center; line-height: 1.4; }
     .luxury-nav { display: none; }
-    .brand-logo { max-width: 180px; } /* Уменьшили логотип на мобилке */
+    .brand-logo { max-width: 180px; }
+}
+/* Премиальный пошаговый процесс (Таймлайн) */
+.premium-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    border-left: 1px solid var(--champagne);
+}
+
+.timeline-step {
+    position: relative;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+}
+
+.timeline-step:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem; /* Центрируем точку на линии */
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--forest);
+    border: 2px solid var(--champagne);
+    border-radius: 50%;
+}
+
+.bg-cashmere .timeline-step::before {
+    background: var(--cashmere);
+}
+
+.step-number {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--champagne);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.step-title {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.step-desc {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.bg-forest .step-title { color: var(--text-light); }
+.bg-forest .step-desc { color: rgba(255,255,255,0.7); }
+/* Детализированное портфолио (Сетка миниатюр) */
+.details-showcase-section {
+    padding: clamp(4rem, 6vw, 8rem) 0;
+}
+
+.showcase-header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media(min-width: 900px) {
+    .showcase-grid {
+        /* Основная картинка слева, миниатюры справа */
+        grid-template-columns: 2fr 1fr; 
+        gap: 4rem;
+    }
+}
+
+.showcase-main-wrapper .img-fluid {
+    width: 100%;
+    aspect-ratio: 16/10; /* Прямоугольник для основного фокуса */
+    object-fit: cover;
+}
+
+.showcase-thumb-grid {
+    display: grid;
+    /* Всегда три колонки на десктопе и планшете */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1rem;
+}
+
+@media(max-width: 600px) {
+    .showcase-thumb-grid {
+        grid-template-columns: repeat(2, 1fr); /* Две колонки на телефоне */
+    }
+}
+
+.showcase-thumb-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1; /* Квадратные миниатюры */
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.showcase-thumb-item:hover {
+    border-color: var(--champagne); /* Подсветка при наведении */
+}
+
+.showcase-thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.showcase-thumb-item:hover img {
+    transform: scale(1.1); /* Увеличение картинки внутри рамки */
 }
