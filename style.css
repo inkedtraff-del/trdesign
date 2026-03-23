@@ -117,10 +117,8 @@ body {
     z-index: -1;
 }
 
-/* Измененный блок логотипа */
 .hero-top-brand { margin-top: 2rem; z-index: 10; }
 
-/* Стили для нового изображения-логотипа */
 .brand-logo {
     display: block;
     margin: 0 auto;
@@ -404,14 +402,6 @@ body {
     text-align: center;
 }
 
-/* Мобильный адаптив */
-@media(max-width: 768px) {
-    .editorial-split-vertical { gap: 2rem; }
-    .btn-boxed { width: 100%; max-width: 300px; }
-    .block-desc { text-align: center; line-height: 1.4; }
-    .luxury-nav { display: none; }
-    .brand-logo { max-width: 180px; }
-}
 /* Премиальный пошаговый процесс (Таймлайн) */
 .premium-timeline {
     position: relative;
@@ -434,7 +424,7 @@ body {
 .timeline-step::before {
     content: '';
     position: absolute;
-    left: -2.4rem; /* Центрируем точку на линии */
+    left: -2.4rem; 
     top: 0;
     width: 12px;
     height: 12px;
@@ -473,6 +463,7 @@ body {
 
 .bg-forest .step-title { color: var(--text-light); }
 .bg-forest .step-desc { color: rgba(255,255,255,0.7); }
+
 /* Детализированное портфолио (Сетка миниатюр) */
 .details-showcase-section {
     padding: clamp(4rem, 6vw, 8rem) 0;
@@ -492,7 +483,6 @@ body {
 
 @media(min-width: 900px) {
     .showcase-grid {
-        /* Основная картинка слева, миниатюры справа */
         grid-template-columns: 2fr 1fr; 
         gap: 4rem;
     }
@@ -500,33 +490,32 @@ body {
 
 .showcase-main-wrapper .img-fluid {
     width: 100%;
-    aspect-ratio: 16/10; /* Прямоугольник для основного фокуса */
+    aspect-ratio: 16/10; 
     object-fit: cover;
 }
 
 .showcase-thumb-grid {
     display: grid;
-    /* Всегда три колонки на десктопе и планшете */
     grid-template-columns: repeat(3, 1fr); 
     gap: 1rem;
 }
 
 @media(max-width: 600px) {
     .showcase-thumb-grid {
-        grid-template-columns: repeat(2, 1fr); /* Две колонки на телефоне */
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 .showcase-thumb-item {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 1/1; /* Квадратные миниатюры */
+    aspect-ratio: 1/1; 
     border: 1px solid transparent;
     transition: border-color 0.3s ease;
 }
 
 .showcase-thumb-item:hover {
-    border-color: var(--champagne); /* Подсветка при наведении */
+    border-color: var(--champagne); 
 }
 
 .showcase-thumb-item img {
@@ -537,5 +526,49 @@ body {
 }
 
 .showcase-thumb-item:hover img {
-    transform: scale(1.1); /* Увеличение картинки внутри рамки */
+    transform: scale(1.1); 
+}
+
+/* Мобильный адаптив */
+@media(max-width: 768px) {
+    .editorial-split-vertical { gap: 1.5rem; }
+    .btn-boxed { width: 100%; max-width: 300px; font-size: 1.1rem; padding: 0.8rem 1.5rem; }
+    .block-desc { text-align: center; line-height: 1.4; margin-bottom: 1rem; }
+    
+    /* 1. Прячем базовое меню на главной странице, чтобы не мешало */
+    .luxury-nav { display: none; }
+    
+    /* НО оставляем меню на подстраницах (цепляемся за наличие фона) */
+    nav[style*="background"] { 
+        display: flex !important; 
+        padding: 1rem 5% !important; 
+    }
+    nav[style*="background"] .nav-links {
+        display: flex;
+        width: 100%;
+        justify-content: space-between; 
+        align-items: center;
+    }
+    nav[style*="background"] .nav-links a {
+        margin-left: 0;
+        font-size: 0.75rem; 
+    }
+
+    /* 2. Логотип жестко наверх, контент расталкиваем по краям */
+    .hero-editorial {
+        padding: 2rem 5% 3rem 5%; 
+        justify-content: space-between; /* Отправляет логотип наверх, кнопки вниз */
+    }
+    
+    .hero-top-brand { margin-top: 0; } 
+    
+    .brand-logo { 
+        max-width: 150px; /* Сделал еще чуть аккуратнее */
+        margin-bottom: 0.5rem;
+    }
+
+    .title-serif {
+        font-size: clamp(2.5rem, 8vw, 3.5rem); 
+        margin-bottom: 2rem;
+    }
 }
